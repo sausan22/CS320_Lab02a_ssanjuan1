@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.ycp.cs320.lab02a_ssanjuan1.controller.NumbersController;
+import edu.ycp.cs320.lab02a_ssanjuan1.controller.GuessingGameController;
+import edu.ycp.cs320.lab02a_ssanjuan1.model.Numbers;
 
 public class AddNumbersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -28,7 +30,14 @@ public class AddNumbersServlet extends HttpServlet {
 		
 		System.out.println("AddNumbers Servlet: doPost");
 		
-
+		//create instance
+		Numbers model = new Numbers();
+		
+		NumbersController controller = new NumbersController();
+		
+		controller.setModel(model);
+		
+		
 		// holds the error message text, if there is any
 		String errorMessage = null;
 
@@ -50,7 +59,7 @@ public class AddNumbersServlet extends HttpServlet {
 			// the view does not alter data, only controller methods should be used for that
 			// thus, always call a controller method to operate on the data
 			else {
-				NumbersController controller = new NumbersController();
+				//NumbersController controller = new NumbersController();
 				result = controller.add(first, second, third);
 			}
 		} catch (NumberFormatException e) {
